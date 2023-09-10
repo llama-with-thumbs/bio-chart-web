@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/llama-with-thumbs/bio-chart-web.git/static/css/main.ed0535e6.css",
+    "main.js": "/llama-with-thumbs/bio-chart-web.git/static/js/main.f3070171.js",
+    "static/js/787.78d69937.chunk.js": "/llama-with-thumbs/bio-chart-web.git/static/js/787.78d69937.chunk.js",
+    "index.html": "/llama-with-thumbs/bio-chart-web.git/index.html",
+    "main.ed0535e6.css.map": "/llama-with-thumbs/bio-chart-web.git/static/css/main.ed0535e6.css.map",
+    "main.f3070171.js.map": "/llama-with-thumbs/bio-chart-web.git/static/js/main.f3070171.js.map",
+    "787.78d69937.chunk.js.map": "/llama-with-thumbs/bio-chart-web.git/static/js/787.78d69937.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ed0535e6.css",
+    "static/js/main.f3070171.js"
+  ]
+}
