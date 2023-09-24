@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/bio-chart-web/static/css/main.65bd7299.css",
-    "main.js": "/bio-chart-web/static/js/main.ddb2cb03.js",
+    "main.css": "/bio-chart-web/static/css/main.05d02397.css",
+    "main.js": "/bio-chart-web/static/js/main.3420cb57.js",
     "static/js/787.78d69937.chunk.js": "/bio-chart-web/static/js/787.78d69937.chunk.js",
     "index.html": "/bio-chart-web/index.html",
-    "main.65bd7299.css.map": "/bio-chart-web/static/css/main.65bd7299.css.map",
-    "main.ddb2cb03.js.map": "/bio-chart-web/static/js/main.ddb2cb03.js.map",
+    "main.05d02397.css.map": "/bio-chart-web/static/css/main.05d02397.css.map",
+    "main.3420cb57.js.map": "/bio-chart-web/static/js/main.3420cb57.js.map",
     "787.78d69937.chunk.js.map": "/bio-chart-web/static/js/787.78d69937.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.65bd7299.css",
-    "static/js/main.ddb2cb03.js"
+    "static/css/main.05d02397.css",
+    "static/js/main.3420cb57.js"
   ]
 }
