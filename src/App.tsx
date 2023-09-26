@@ -1,14 +1,14 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import ImageDisplay from './ImageDisplay';
+import FirestoreDataComponent from './getFirestoreCollection'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <ImageDisplay />
-      </header>
+        <ImageDisplay sample="A"/>
+        <FirestoreDataComponent/>
+        <ImageDisplay sample="B"/>
+        <ImageDisplay sample="C"/>
     </div>
   );
 }
