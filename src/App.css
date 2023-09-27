@@ -2,8 +2,9 @@
   display: flex;
   flex-direction: column; /* Arrange images in a row (horizontal) */
 }
-.chart {
-  width: 300px;
-  height: 200px;
-  background-color: gray;
+
+.sample{
+  display: flex;
+  flex-direction: row;
+  height: 230px;
 }

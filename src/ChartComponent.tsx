@@ -1,4 +1,5 @@
 import React from 'react';
+import './ChartComponent.css';
 import {
   LineChart,
   Line,
@@ -21,10 +22,9 @@ const DataDisplay: React.FC<DataDisplayProps> = ({ data }) => {
   );
 
   return (
-    <div>
-      <h2>Mean Blue Intensity Chart</h2>
-      <LineChart width={600} height={400} data={sortedData}>
-        <XAxis dataKey="timestamp_str" />
+    <div className='chart-box'>
+      <LineChart width={300} height={215} data={sortedData}>
+        <XAxis dataKey="timestamp_str" tick={false} /> {/* Hide x-axis ticks */}
         <YAxis />
         <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
         <Tooltip />

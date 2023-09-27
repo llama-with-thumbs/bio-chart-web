@@ -3,6 +3,9 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import DataDisplay from './ChartComponent'; // Import your ChartComponent
 
+interface ImageDisplayProps {
+    sample: string;
+}
 // Define an interface to represent the data structure
 interface DataItem {
     timestamp_str: string;
@@ -23,12 +26,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const FirestoreDataComponent = () => {
+const FirestoreDataComponent: React.FC<ImageDisplayProps> = ({ sample }) => {
     const [chartData, setChartData] = useState<DataItem[]>([]); // Specify the type of chartData
 
     useEffect(() => {
         // Reference to the Firestore collection
-        const collectionRef = collection(db, 'B_Mean_Blue_Intensity');
+        const collectionRef = collection(db, `${sample}_Mean_Blue_Intensity`);
 
         // Fetch data from Firestore
         const fetchData = async () => {
@@ -54,7 +57,6 @@ const FirestoreDataComponent = () => {
 
     return (
         <div>
-            <h2>Firestore Data Chart</h2>
             <DataDisplay data={chartData} />
         </div>
     );
