@@ -8,3 +8,7 @@
   flex-direction: row;
   height: 230px;
 }
+
+.sample > * {
+  border: 1px solid red;
+}

@@ -1,6 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import getCategoryImages from './getCategoryImages';
+import { list, ref, getDownloadURL } from 'firebase/storage';
+import { storage } from './firebase'; // Import your Firebase setup
 import './ImageDisplay.css'; // Import the SCSS file
+
+const getCategoryImages = async ({ sample }: { sample: string }) => { // Specify the type for sample
+  const categoryRef = ref(storage, `captured_images/${sample}/Latest_capture`);
+  const listResult = await list(categoryRef);
+  const imageUrls = [];
+
+  for (const item of listResult.items) {
+    const imageUrl = await getDownloadURL(item);
+    imageUrls.push(imageUrl);
+  }
+
+  return imageUrls;
+};
 
 interface ImageDisplayProps {
   sample: string;
@@ -45,7 +59,7 @@ const ImageDisplay: React.FC<ImageDisplayProps> = ({ sample }) => {
       {images.map((image, index) => (
         <div key={index} className="image-item">
           <img src={image.url} alt={image.name} />
-          <p>{sample}</p>
+          <p>Mycelium culture flask {sample}</p>
           <p>{image.timestamp}</p>
         </div>
       ))}

@@ -1,0 +1,12 @@
+.gif-container {
+    display: flex;
+  }
+  
+  .gif-item {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: row; /* Arrange images in a row (horizontal) */
+    margin: 10px;
+    text-align: center;
+  }
+  
