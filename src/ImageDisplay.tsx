@@ -59,8 +59,16 @@ const ImageDisplay: React.FC<ImageDisplayProps> = ({ sample }) => {
       {images.map((image, index) => (
         <div key={index} className="image-item">
           <img src={image.url} alt={image.name} />
-          <p>Mycelium culture flask {sample}</p>
-          <p>{image.timestamp}</p>
+          <div className='flask-details-container'>
+            <h3>
+              Mycelium culture flask {sample}
+            </h3>
+            <div className='timeline-container'>
+              <p>Start time: </p>
+              <p>Latest update: {image.timestamp}</p>
+              <p>Elapsed Time: </p>
+            </div>
+          </div>
         </div>
       ))}
     </div>

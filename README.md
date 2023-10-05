@@ -2,7 +2,17 @@
 
 ![Image Description](https://firebasestorage.googleapis.com/v0/b/bio-chart.appspot.com/o/captured_images%2FFull-sized%20image%2Fimage_captured_image_2023-09-21_16-06-07_with_rectangles.jpg?alt=media&token=a9687a52-9dc0-4aa2-a883-447d5ec41c52)
 
-![Image Description 1](https://firebasestorage.googleapis.com/v0/b/bio-chart.appspot.com/o/captured_images%2FA%2Fcropped_captured_image_2023-09-21_16-06-07.jpg?alt=media&token=79465c9f-4085-41b7-85a0-9dca727964e4 =50x)
+# First Step: Image Processing
+The initial step involves processing the raw image, which includes tasks such as:
 
-![Image Description 2]([image_url_2_here](https://firebasestorage.googleapis.com/v0/b/bio-chart.appspot.com/o/captured_images%2FB%2Fcropped_captured_image_2023-09-21_16-06-07.jpg?alt=media&token=6a13c69f-8971-46ef-9e7b-686b7924bc75))
-![Image Description 3]([image_url_3_here](https://firebasestorage.googleapis.com/v0/b/bio-chart.appspot.com/o/captured_images%2FC%2Fcropped_captured_image_2023-09-21_16-06-07.jpg?alt=media&token=b9f38b0a-6e9c-499c-bb0c-4d03ccb8f07f))
+- Aligning the image to a level position.
+- Cropping out the necessary portions.
+- Saving the processed images for later use.
+
+In addition, images are saved in a database (Firebase is used, but consideration is given to switching to a more convenient solution).
+
+# Second Step: Color Channel Extraction
+The second step involves extracting color channel values from the images and saving them to the database.
+
+![Image Description](https://firebasestorage.googleapis.com/v0/b/bio-chart.appspot.com/o/captured_images%2FFull-sized%20image%2FFlasks%20combined%20with%20transparent%20backgrounds.png?alt=media&token=156a6075-0feb-420e-9895-621268399242)
+

@@ -12,7 +12,6 @@
 
 img {
   margin: 5px;
-  max-width: 100%; /* Limit the image's width to 100% of its container */
   height: 200px; /* Allow the height to adjust based on the image's aspect ratio */
 }
 
@@ -20,4 +19,9 @@ p {
   margin: 0 20px;
   font-size: 18px; /* Adjust font size as needed */
   color: black;
+}
+
+.timeline-container {
+  text-align: left;
+
 }
