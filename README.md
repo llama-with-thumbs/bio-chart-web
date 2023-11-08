@@ -5,8 +5,8 @@ This project involves programming microcontrollers to collect data from sensors,
 - Technology stack: Python, JavaScript, ReactJS, TypeScript, Firebase, Airbnb, AWS EC2, Git, Conventional Commits
 - Deployed at: https://llama-with-thumbs.github.io/bio-chart-web/
 - App-interface
-  
-![Image Description](https://firebasestorage.googleapis.com/v0/b/bio-chart.appspot.com/o/Bio-chart%20Assets%2Fraw_image_with_rectangles.jpg?alt=media&token=b4b01c2b-6169-45e6-843c-703cd34350aa)
+
+![app interface](https://firebasestorage.googleapis.com/v0/b/bio-chart.appspot.com/o/Bio-chart%20Assets%2Fapp_interface.png?alt=media&token=f2420406-319e-47a4-8519-88b21805ad5c)
 
 # First Step: Image Processing
 The initial step involves processing the raw image, which includes tasks such as:
@@ -17,6 +17,7 @@ The initial step involves processing the raw image, which includes tasks such as
 
 In addition, images are saved in a database (Firebase is used, but consideration is given to switching to a more convenient solution).
 
+![chamber](https://firebasestorage.googleapis.com/v0/b/bio-chart.appspot.com/o/Bio-chart%20Assets%2Fraw_image_with_rectangles.jpg?alt=media&token=b4b01c2b-6169-45e6-843c-703cd34350aa)
 # Second Step: Color Channel Extraction
 The second step involves extracting color channel values from the images and saving them to the database.
 
