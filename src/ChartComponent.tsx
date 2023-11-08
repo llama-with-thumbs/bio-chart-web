@@ -51,8 +51,12 @@ const DataDisplay: React.FC<DataDisplayProps> = ({ data }) => {
 
   return (
     <div className='chart-box'>
-      <LineChart width={300} height={215} data={smoothedData}>
-        <XAxis dataKey='timestamp_str' tick={false} />
+      <LineChart width={400} height={200} data={smoothedData}> {/* Adjust width and height */}
+        <XAxis
+          dataKey='timestamp_str'
+          tick={true}
+          tickFormatter={(timestamp) => new Date(timestamp).toLocaleDateString()} // Format the timestamp as a date
+        />
         <YAxis domain={[0, 100]} /> {/* Set the Y-axis domain to [0, 100] */}
         <CartesianGrid stroke='#eee' strokeDasharray='5 5' />
         <Tooltip />

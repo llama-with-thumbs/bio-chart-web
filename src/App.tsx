@@ -21,6 +21,13 @@ function App() {
         <GifDisplay flask="C" />
         <FirestoreDataComponent sample="C" />
       </div>
+
+      <div className='sample'>
+        <ImageDisplay sample="A_B" />
+        <GifDisplay flask="A_B" />
+        <FirestoreDataComponent sample="A_B" />
+      </div>
+
     </div>
   );
 }
