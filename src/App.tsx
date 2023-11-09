@@ -2,11 +2,13 @@ import './App.css';
 import ImageDisplay from './ImageDisplay';
 import GifDisplay from './GifDisplay'
 import FirestoreDataComponent from './getFirestoreCollection'
+import ChamberTable from './ChamberTable';
 
 function App() {
   return (
     <div className="App">
-      <div className='sample'>
+      <FirestoreDataComponent/>
+      {/* <div className='sample'>
         <ImageDisplay sample="A" />
         <GifDisplay flask="A" />
         <FirestoreDataComponent sample="A" />
@@ -26,7 +28,7 @@ function App() {
         <ImageDisplay sample="A_B" />
         <GifDisplay flask="A_B" />
         <FirestoreDataComponent sample="A_B" />
-      </div>
+      </div> */}
 
     </div>
   );
