@@ -28,7 +28,7 @@ const FirestoreDataComponent = () => {
         const querySnapshot = await getDocs(collection(db, "bio-chart"));
         const data = await Promise.all(
           querySnapshot.docs.map(async (docRef) => {
-            const { "creation date": creation_date, name: name } = docRef.data();
+            const { "creation_date": creation_date, "chamber": chamber} = docRef.data();
 
             const flasksCollectionRef = collection(doc(db, "bio-chart", docRef.id), "flasks");
             const flasksQuerySnapshot = await getDocs(flasksCollectionRef);
@@ -38,12 +38,11 @@ const FirestoreDataComponent = () => {
                 const snippetsCollectionRef = collection(flaskDoc.ref, "snippets");
                 const snippetsQuerySnapshot = await getDocs(snippetsCollectionRef);
                 const snippetsData = snippetsQuerySnapshot.docs.map((snippetDoc) => snippetDoc.data());
-
                 return { ...flask, snippets: snippetsData };
               })
             );
 
-            return { creation_date, name, flasks: flasksData };
+            return { creation_date, chamber, flasks: flasksData };
           })
         );
 
@@ -58,11 +57,12 @@ const FirestoreDataComponent = () => {
 
   return (
     <div>
-      {chamberData.map((item) => (
-        <div key={item.creation_date}>
-          <strong>Creation date:</strong> {item.creation_date} <strong>Chamber identification:</strong> {item.name}
+      {chamberData.map((chamber) => (
+        <div key={chamber.creation_date}>
+          <strong>Creation date:</strong> {chamber.creation_date} <strong>Chamber identification:</strong>{" "}
+          {chamber.chamber}
           <ul>
-            {item.flasks.map((flask) => (
+            {chamber.flasks.map((flask) => (
               <li key={flask.name}>
                 <ul>
                   <SnippetsList snippets={flask.snippets} flask={flask} />

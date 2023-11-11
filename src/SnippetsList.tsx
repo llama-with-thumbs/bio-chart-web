@@ -1,4 +1,6 @@
 import React from 'react';
+import IntensityChart from './IntensityChart';
+import DataDisplay from './ChartComponent';
 
 interface Snippet {
   chamber: string;
@@ -13,8 +15,8 @@ interface Snippet {
 interface SnippetsListProps {
   snippets: Snippet[];
   flask: {
-    name: string;
-    creation_date: string;
+    flask: string;
+    last_update: string;
     // Add other flask properties as needed
   };
 }
@@ -23,20 +25,25 @@ interface SnippetsListProps {
 }
 
 const SnippetsList: React.FC<SnippetsListProps> = ({ snippets, flask }) => {
+  const transformedData = snippets.map(({ creation_date, mean_blue_intensity, mean_green_intensity, mean_red_intensity }) => ({
+    timestamp_str: creation_date,
+    mean_blue_intensity,
+    mean_green_intensity,
+    
+    mean_red_intensity
+  }));
   return (
     <div>
-      <div><strong>Flask Name:</strong> {flask.name} <strong>Flask creation_date:</strong>{' '}{flask.creation_date}</div>
-      {snippets.map((snippet) => (
+      <div><strong>Flask Name:</strong> {flask.flask} <strong>Flask last_update:</strong>{' '}{flask.last_update}</div>
+      <DataDisplay data = {transformedData}/>
+      {/* {snippets.map((snippet) => (
         <p key={snippet.path}>
-          <strong>Chamber:</strong> {snippet.chamber}{' '}
           <strong>Creation Date:</strong> {snippet.creation_date}{' '}
-          <strong>Flask:</strong> {snippet.flask}{' '}
           <strong>Mean Blue Intensity:</strong> {snippet.mean_blue_intensity}{' '}
           <strong>Mean Green Intensity:</strong> {snippet.mean_green_intensity}{' '}
           <strong>Mean Red Intensity:</strong> {snippet.mean_red_intensity}{' '}
-          <strong>Path:</strong> {snippet.path}
         </p>
-      ))}
+      ))} */}
     </div>
   );
 };
