@@ -1,6 +1,6 @@
 import React from 'react';
-import IntensityChart from './IntensityChart';
-import DataDisplay from './ChartComponent';
+import IntensityChart from './ChartComponent';
+import FlaskInfo from './FlaskInfo';
 
 interface Snippet {
   chamber: string;
@@ -17,33 +17,40 @@ interface SnippetsListProps {
   flask: {
     flask: string;
     last_update: string;
+    culture: string;
     // Add other flask properties as needed
   };
+  creation_date: string;
 }
 interface SnippetsListProps {
   snippets: Snippet[];
 }
 
-const SnippetsList: React.FC<SnippetsListProps> = ({ snippets, flask }) => {
+const SnippetsList: React.FC<SnippetsListProps> = ({ snippets, flask, creation_date }) => {
   const transformedData = snippets.map(({ creation_date, mean_blue_intensity, mean_green_intensity, mean_red_intensity }) => ({
     timestamp_str: creation_date,
     mean_blue_intensity,
     mean_green_intensity,
-    
+
     mean_red_intensity
   }));
+  
+  // Basic styling for flex display
+  const containerStyle: React.CSSProperties = {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    border: '1px solid #ccc',
+    padding: '10px',
+    margin: '0',
+    borderRadius: '8px',
+  };
+
   return (
-    <div>
-      <div><strong>Flask Name:</strong> {flask.flask} <strong>Flask last_update:</strong>{' '}{flask.last_update}</div>
-      <DataDisplay data = {transformedData}/>
-      {/* {snippets.map((snippet) => (
-        <p key={snippet.path}>
-          <strong>Creation Date:</strong> {snippet.creation_date}{' '}
-          <strong>Mean Blue Intensity:</strong> {snippet.mean_blue_intensity}{' '}
-          <strong>Mean Green Intensity:</strong> {snippet.mean_green_intensity}{' '}
-          <strong>Mean Red Intensity:</strong> {snippet.mean_red_intensity}{' '}
-        </p>
-      ))} */}
+    <div style={containerStyle}>
+      <FlaskInfo flask={flask} creation_date={creation_date}/>
+      <IntensityChart data={transformedData} />
     </div>
   );
 };
