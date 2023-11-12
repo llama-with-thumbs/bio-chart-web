@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs, doc, getDoc } from "firebase/firestore";
-import SnippetsList from "./SnippetsList";
+import FlasksList from "./FlasksList";
 // Define an interface to represent the data structure
 // No need for TypeScript interfaces in JavaScript
 // Just remove the interface definition
@@ -59,9 +59,11 @@ const FirestoreDataComponent = () => {
     <div>
       {chamberData.map((chamber) => (
         <div key={chamber.creation_date}>
-          <strong>Chamber identification:</strong>{" "}{chamber.chamber}
+          <div style={{ padding: '10px 0 0 10px' }}>
+            <strong>Chamber identifier:</strong> {chamber.chamber}
+          </div>
           {chamber.flasks.map((flask) => (
-            <SnippetsList snippets={flask.snippets} flask={flask} creation_date={chamber.creation_date}/>
+            <FlasksList snippets={flask.snippets} flask={flask} creation_date={chamber.creation_date}/>
           ))}
         </div>
       ))}

@@ -48,19 +48,16 @@ const IntensityChart = ({ data }) => {
           dataKey="timestamp_str"
           tick={true}
           tickFormatter={(timestamp) => {
-            const [datePart, timePart] = timestamp.split("_");
-            const [year, month, day] = datePart.split("-");
-            const [hours, minutes, seconds] = timePart.split("-");
-
-            const formattedDate = new Date(year, month - 1, day, hours, minutes, seconds);
-
-            const formattedDateString = `${formattedDate.toLocaleDateString(
-              "en-GB"
-            )} ${formattedDate.toLocaleTimeString("en-GB", {
+            const formattedDate = new Date(timestamp);
+          
+            const formattedDateString = formattedDate.toLocaleString("en-GB", {
+              year: "numeric",
+              month: "numeric",
+              day: "numeric",
               hour: "2-digit",
               minute: "2-digit",
-            })}`;
-
+            });
+          
             return formattedDateString;
           }}
         />
@@ -71,25 +68,25 @@ const IntensityChart = ({ data }) => {
         <Line
           type="monotone"
           dataKey="mean_blue_intensity"
-          name={<span title="Mean Blue Intensity">MBI</span>}
+          name="Blue MI"
           stroke="rgb(75, 192, 192)"
-          strokeWidth={3}
+          strokeWidth={4}
           dot={false}
         />
         <Line
           type="monotone"
           dataKey="mean_green_intensity"
-          name={<span title="Mean Green Intensity">MGI</span>}
+          name="Green MI"
           stroke="rgb(0, 128, 0)"
-          strokeWidth={3}
+          strokeWidth={2}
           dot={false}
         />
         <Line
           type="monotone"
           dataKey="mean_red_intensity"
-          name={<span title="Mean Red Intensity">MRI</span>}
+          name="Red MI"
           stroke="rgb(255, 0, 0)"
-          strokeWidth={3}
+          strokeWidth={2}
           dot={false}
         />
       </LineChart>
