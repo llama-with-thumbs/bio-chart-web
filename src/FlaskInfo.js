@@ -28,8 +28,9 @@ const FlaskInfo = ({ flask, creation_date }) => {
         height: '200px',
         borderRadius: '8px',
         lineHeight: 'normal',
-        margin: '0px 10px',
-        padding: '0px 10px'
+        margin: '0 0 0 10px',
+        padding: '0px 10px',
+        overflow: 'hidden'
       }}>
       <h3>Flask Parameters</h3>
       <div><strong>Flask identifier:</strong> {flaskName}</div>

@@ -6,6 +6,8 @@ interface Flask {
   last_update: string;
   culture: string;
   most_recent_snippet_path: string;
+  substrate: string;
+  gif_path: string;
   // Add other flask properties as needed
 }
 
@@ -30,8 +32,11 @@ const FlaskImageDisplay: React.FC<FlaskImageDisplayProps> = ({ flask }) => {
   }, [flask.most_recent_snippet_path]);
 
   return (
-    <div  style={{ padding: '0px', margin: '0px'}}>
-      {imageUrl && <img src={imageUrl} alt={`Image for ${flask.flask}`} style={{ height: '200px' }} />}
+    <div style={{ padding: '0px', margin: '0px', display: 'flex' }}>
+      {imageUrl && <img src={imageUrl} alt={`Image for ${flask.flask}`} style={{
+        height: '200px', margin: '0', padding: '0', border: "1px solid #ccc",
+        borderRadius: '3px'
+      }} />}
     </div>
   );
 };

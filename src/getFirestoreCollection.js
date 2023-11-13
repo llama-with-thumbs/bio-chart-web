@@ -58,8 +58,9 @@ const FirestoreDataComponent = () => {
   return (
     <div>
       {chamberData.map((chamber) => (
-        <div key={chamber.creation_date}>
-          <div style={{ padding: '10px 0 0 10px' }}>
+        <div key={chamber.creation_date} style={{ padding: '0', margin: '10px', border: "1px solid #ccc",
+        borderRadius: '8px'}}>
+          <div style={{ padding: '5px 0 0 10px'}}>
             <strong>Chamber identifier:</strong> {chamber.chamber}
           </div>
           {chamber.flasks.map((flask) => (

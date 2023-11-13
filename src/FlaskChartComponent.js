@@ -41,7 +41,8 @@ const IntensityChart = ({ data }) => {
       style={{
         border: "1px solid #ccc",
         borderRadius: '8px',
-        margin: "0"
+        margin: "0",
+        padding: "0 10px"
       }}>
       <LineChart width={400} height={200} data={smoothedData}>
         <XAxis
@@ -78,7 +79,7 @@ const IntensityChart = ({ data }) => {
           dataKey="mean_green_intensity"
           name="Green MI"
           stroke="rgb(0, 128, 0)"
-          strokeWidth={2}
+          strokeWidth={1}
           dot={false}
         />
         <Line
@@ -86,7 +87,7 @@ const IntensityChart = ({ data }) => {
           dataKey="mean_red_intensity"
           name="Red MI"
           stroke="rgb(255, 0, 0)"
-          strokeWidth={2}
+          strokeWidth={1}
           dot={false}
         />
       </LineChart>

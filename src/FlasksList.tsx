@@ -1,9 +1,10 @@
 import React from 'react';
-import IntensityChart from './FlaskChartComponent';
-import FlaskInfo from './FlaskInfo';
 import FlaskImageDisplay from './FlaskImageDisplay';
+import FlaskInfo from './FlaskInfo';
+import FlaskGifDisplay from './FlaskGifDisplay';
+import IntensityChart from './FlaskChartComponent';
 
-interface Flask {
+interface Snippet {
   chamber: string;
   creation_date: string;
   flask: string;
@@ -14,19 +15,20 @@ interface Flask {
 }
 
 interface SnippetsListProps {
-  snippets: Flask[];
+  snippets: Snippet[];
   flask: {
     flask: string;
     last_update: string;
     culture: string;
     most_recent_snippet_path: string;
-    substrate: string
+    substrate: string;
+    gif_path: string;
     // Add other flask properties as needed
   };
   creation_date: string;
 }
 interface SnippetsListProps {
-  snippets: Flask[];
+  snippets: Snippet[];
 }
 
 const FlasksList: React.FC<SnippetsListProps> = ({ snippets, flask, creation_date }) => {
@@ -44,7 +46,7 @@ const FlasksList: React.FC<SnippetsListProps> = ({ snippets, flask, creation_dat
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    padding: '10px',
+    padding: '5px 10px',
     margin: '0',
   };
 
@@ -52,6 +54,7 @@ const FlasksList: React.FC<SnippetsListProps> = ({ snippets, flask, creation_dat
     <div style={containerStyle}>
       <FlaskImageDisplay flask={flask} />
       <FlaskInfo flask={flask} creation_date={creation_date}/>
+      <FlaskGifDisplay flask={flask} />
       <IntensityChart data={transformedData} />
     </div>
   );
