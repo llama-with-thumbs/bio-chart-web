@@ -64,9 +64,9 @@ const ImageDisplay: React.FC<ImageDisplayProps> = ({ sample }) => {
               Mycelium culture flask {sample}
             </h3>
             <div className='timeline-container'>
-              <p>Start time: </p>
+              <p>Start time: Sep 22, 2023, 4:27:12 PM</p>
               <p>Latest update: {image.timestamp}</p>
-              <p>Elapsed Time: </p>
+              <p>Elapsed Time: 641 hours ( 26 days )</p>
             </div>
           </div>
         </div>
