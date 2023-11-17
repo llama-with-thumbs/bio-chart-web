@@ -6,7 +6,12 @@ This project involves programming microcontrollers to collect data from sensors,
 - Deployed at: https://llama-with-thumbs.github.io/bio-chart-web/
 - App-interface
 
-![app interface](https://firebasestorage.googleapis.com/v0/b/bio-chart.appspot.com/o/Bio-chart%20Assets%2Fapp_interface.png?alt=media&token=f2420406-319e-47a4-8519-88b21805ad5c)
+![app interface](https://firebasestorage.googleapis.com/v0/b/bio-chart.appspot.com/o/Bio-chart%20Assets%2Fapp%20interface.png?alt=media&token=6f9136d7-25c7-414b-9cf9-1112813bec40)
+
+# Data model
+Here is a schematic representation of the data model that was established to better accommodate the growing project, employing an ontology-based approach in its creation.
+![data model](https://firebasestorage.googleapis.com/v0/b/bio-chart.appspot.com/o/Bio-chart%20Assets%2FChamber-flask-model.png?alt=media&token=d89aa493-8749-42cf-ba25-f43fd4dba40a)
+
 
 # First Step: Image Processing
 The initial step involves processing the raw image, which includes tasks such as:
