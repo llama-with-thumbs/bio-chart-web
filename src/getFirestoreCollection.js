@@ -2,9 +2,6 @@ import React, { useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs, doc, getDoc } from "firebase/firestore";
 import FlasksList from "./FlasksList";
-// Define an interface to represent the data structure
-// No need for TypeScript interfaces in JavaScript
-// Just remove the interface definition
 
 // Firebase configuration
 const firebaseConfig = {

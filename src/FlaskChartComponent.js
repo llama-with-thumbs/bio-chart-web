@@ -1,5 +1,3 @@
-import React from "react";
-import "./ChartComponent.css";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
 
 const calculateMovingAverage = (data, windowSize) => {
