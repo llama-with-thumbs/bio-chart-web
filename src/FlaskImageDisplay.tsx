@@ -27,7 +27,7 @@ const calculateTimeAgo = (differenceInMinutes: number): [string, number] => {
 
 const renderTimeAgo = (unit: string, value: number) => (
   <span>
-    <span style={{ fontWeight: 'bold', fontSize: '16px' }}>
+    <span style={{ fontWeight: 'bold', fontSize: '16px', color: unit !== 'minute' ? 'red' : '#00ff00' }}>
       {value}</span> {unit}{value !== 1 ? 's' : ''} ago
   </span>
 );

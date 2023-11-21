@@ -29,6 +29,36 @@ const calculateMovingAverage = (data, windowSize) => {
   return smoothedData;
 };
 
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active) {
+    const formattedDate = new Date(label).toLocaleString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true,
+    });
+
+    return (
+      <div style={{
+        border: "1px solid #ccc",
+        borderRadius: '2px',
+        margin: "0, 5px",
+        padding: "0, 5px",
+        lineHeight: "0.2"
+      }}>
+        <p>{`Timestamp: ${formattedDate}`}</p>
+        <p>{`Mean Blue Intensity: ${payload[0].value}`}</p>
+        <p>{`Mean Green Intensity: ${payload[1].value}`}</p>
+        <p>{`Mean Red Intensity: ${payload[2].value}`}</p>
+      </div>
+    );
+  }
+
+  return null;
+};
+
 const IntensityChart = ({ data }) => {
   const sortedData = [...data].sort((a, b) => {
     return a.timestamp_str.localeCompare(b.timestamp_str);
@@ -43,14 +73,15 @@ const IntensityChart = ({ data }) => {
         borderRadius: '8px',
         margin: "0",
         padding: "0 10px"
-      }}>
+      }}
+    >
       <LineChart width={400} height={200} data={smoothedData}>
         <XAxis
           dataKey="timestamp_str"
           tick={true}
           tickFormatter={(timestamp) => {
             const formattedDate = new Date(timestamp);
-          
+
             const formattedDateString = formattedDate.toLocaleString("en-GB", {
               year: "numeric",
               month: "numeric",
@@ -58,13 +89,13 @@ const IntensityChart = ({ data }) => {
               hour: "2-digit",
               minute: "2-digit",
             });
-          
+
             return formattedDateString;
           }}
         />
-        <YAxis domain={[0, 100]} />
+        <YAxis domain={[0, 150]} />
         <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
-        <Tooltip />
+        <Tooltip content={<CustomTooltip />} />
         <Legend />
         <Line
           type="monotone"
