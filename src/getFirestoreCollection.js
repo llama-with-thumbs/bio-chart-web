@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs, doc, getDoc } from "firebase/firestore";
 import FlasksList from "./FlasksList";
+import "./getFirestoreCollection.css";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -18,6 +19,7 @@ const db = getFirestore(app);
 
 const FirestoreDataComponent = () => {
   const [chamberData, setChamberData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); // New state for loading
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,6 +46,8 @@ const FirestoreDataComponent = () => {
         );
 
         setChamberData(data);
+        setIsLoading(false); // Set loading to false when data is fetched
+
       } catch (error) {
         console.error("Error fetching data from Firestore:", error);
       }
@@ -53,18 +57,23 @@ const FirestoreDataComponent = () => {
   }, []);
 
   return (
-    <div>
-      {chamberData.map((chamber) => (
-        <div key={chamber.creation_date} style={{ padding: '0', margin: '10px', border: "1px solid #ccc",
-        borderRadius: '8px'}}>
-          <div style={{ padding: '5px 0 0 10px'}}>
-            <strong>Chamber identifier:</strong> {chamber.chamber}
+    <div style={{display:"flex", flexDirection:"column", minHeight:"80vh", justifyContent:"center" }}>
+      {isLoading ? (
+        // Render a loading spinner while data is being fetched
+        <div className="spinner"></div>
+      ) : (
+        // Render the content when data is loaded
+        chamberData.map((chamber) => (
+          <div key={chamber.creation_date} style={{ padding: '0', margin: '10px', border: "1px solid #ccc", borderRadius: '8px' }}>
+            <div style={{ padding: '5px 0 0 10px' }}>
+              <strong>Chamber identifier:</strong> {chamber.chamber}
+            </div>
+            {chamber.flasks.map((flask) => (
+              <FlasksList snippets={flask.snippets} flask={flask} creation_date={chamber.creation_date} />
+            ))}
           </div>
-          {chamber.flasks.map((flask) => (
-            <FlasksList snippets={flask.snippets} flask={flask} creation_date={chamber.creation_date}/>
-          ))}
-        </div>
-      ))}
+        ))
+      )}
     </div>
   );
 };
