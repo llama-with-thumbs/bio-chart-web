@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, doc, getDoc } from "firebase/firestore";
+import { getFirestore, collection, getDocs, doc } from "firebase/firestore";
 import FlasksList from "./FlasksList";
 import "./getFirestoreCollection.css";
 
@@ -27,21 +27,34 @@ const FirestoreDataComponent = () => {
         const querySnapshot = await getDocs(collection(db, "bio-chart"));
         const data = await Promise.all(
           querySnapshot.docs.map(async (docRef) => {
-            const { creation_date: creation_date, chamber: chamber } = docRef.data();
-
+            const { creation_date, chamber } = docRef.data();
+            
             const flasksCollectionRef = collection(doc(db, "bio-chart", docRef.id), "flasks");
             const flasksQuerySnapshot = await getDocs(flasksCollectionRef);
             const flasksData = await Promise.all(
               flasksQuerySnapshot.docs.map(async (flaskDoc) => {
                 const flask = flaskDoc.data();
+                const lastUpdate = new Date(flask.last_update);
+                const currentTime = new Date();
+
+                // Calculate the time difference between the last update and the current time
+                const timeSinceLastUpdateHours = Math.floor((currentTime - lastUpdate) / (1000 * 60 * 60));
+
+                // If more than 24 hours have passed since the last update, skip this flask
+                if (timeSinceLastUpdateHours > 24) {
+                  return null;
+                }
+
                 const snippetsCollectionRef = collection(flaskDoc.ref, "snippets");
                 const snippetsQuerySnapshot = await getDocs(snippetsCollectionRef);
                 const snippetsData = snippetsQuerySnapshot.docs.map((snippetDoc) => snippetDoc.data());
+
                 return { ...flask, snippets: snippetsData };
               })
             );
 
-            return { creation_date, chamber, flasks: flasksData };
+            // Filter out any null values (flasks not updated in the last 24 hours)
+            return { creation_date, chamber, flasks: flasksData.filter(flask => flask !== null) };
           })
         );
 
@@ -69,7 +82,12 @@ const FirestoreDataComponent = () => {
               <strong>Chamber identifier:</strong> {chamber.chamber}
             </div>
             {chamber.flasks.map((flask) => (
-              <FlasksList snippets={flask.snippets} flask={flask} creation_date={chamber.creation_date} />
+              <FlasksList 
+                key={flask.flask} 
+                snippets={flask.snippets} 
+                flask={flask} 
+                creation_date={chamber.creation_date} 
+              />
             ))}
           </div>
         ))
