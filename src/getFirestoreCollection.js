@@ -70,7 +70,7 @@ const FirestoreDataComponent = () => {
   }, []);
 
   return (
-    <div style={{display:"flex", flexDirection:"column", minHeight:"80vh", justifyContent:"center" }}>
+    <div style={{display:"flex", flexDirection:"column", minHeight:"100vh"}}>
       {isLoading ? (
         // Render a loading spinner while data is being fetched
         <div className="spinner"></div>
