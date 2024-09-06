@@ -4,6 +4,20 @@ import FlaskInfo from './FlaskInfo';
 import FlaskGifDisplay from './FlaskGifDisplay';
 import IntensityChart from './FlaskChartComponent';
 
+function formatISODate(isoDate: string): string {
+  const date = new Date(isoDate);
+  const options: Intl.DateTimeFormatOptions = {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  };
+
+  return new Intl.DateTimeFormat('en-US', options).format(date);
+}
+
+
 interface Snippet {
   chamber: string;
   creation_date: string;
@@ -39,23 +53,39 @@ const FlasksList: React.FC<SnippetsListProps> = ({ snippets, flask, creation_dat
 
     mean_red_intensity
   }));
-  
+
   // Basic styling for flex display
   const containerStyle: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    padding: '5px 10px',
-    margin: '0',
+
+
+    border: '1px solid #ccc',
+    borderRadius: '8px',
+    lineHeight: 'normal',
+    margin: '5px 10px',
+    padding: '0px 10px',
   };
 
   return (
-    <div style={containerStyle}>
-      <FlaskImageDisplay flask={flask} />
-      <FlaskInfo flask={flask} creation_date={creation_date}/>
-      <FlaskGifDisplay flask={flask} />
-      <IntensityChart data={transformedData} />
+    <div>
+      <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', margin: '0 10px' }}>
+  <div style={{ margin: '0 10px 0 0' }}>
+    <strong>Identifier: </strong>{flask.flask}
+  </div>
+  <div>
+    <strong>Last Update: </strong>{formatISODate(flask.last_update)}
+  </div>
+</div>
+
+      <div style={containerStyle}>
+        <FlaskImageDisplay flask={flask} />
+        <FlaskInfo flask={flask} creation_date={creation_date} />
+        <FlaskGifDisplay flask={flask} />
+        <IntensityChart data={transformedData} />
+      </div>
     </div>
   );
 };

@@ -32,12 +32,10 @@ const FlaskInfo = ({ flask, creation_date }) => {
         padding: '0px 10px',
         overflow: 'hidden'
       }}>
-      <h3>Flask Parameters</h3>
-      <div><strong>Flask identifier:</strong> {flaskName}</div>
+      <h3>Parameters</h3>
       <div><strong>Seeded culture:</strong> <a href={culture} target="_blank" rel="noopener noreferrer"> P. cubensis</a></div>
       <div><strong>Substrate:</strong> {flask.substrate}</div>
       <div><strong>Start date:</strong> {formatted_creation_date}</div>
-      <div><strong>Last Update:</strong> {formatted_last_update}</div>
       <div><strong>Elapsed Time: </strong>{timeDifferenceHours} hours</div>
     </div>
   );
