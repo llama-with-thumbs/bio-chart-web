@@ -53,11 +53,23 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 const AreaChart = ({ data }) => {
+  // Filter out data points where object_area is NaN
+  const filteredData = data.filter(item => !isNaN(item.object_area));
+
   // Sort data by timestamp
-  const sortedData = [...data].sort((a, b) => new Date(a.timestamp_str) - new Date(b.timestamp_str));
+  const sortedData = [...filteredData].sort((a, b) => new Date(a.timestamp_str) - new Date(b.timestamp_str));
 
   // Smooth data using a moving average with a window size of 5
   const smoothedData = calculateMovingAverage(sortedData, 5);
+
+  // Get min and max from smoothedData for Y-axis range, and slightly increase the range
+  const objectAreas = smoothedData.map(d => parseFloat(d.object_area));
+  let minArea = Math.min(...objectAreas);
+  let maxArea = Math.max(...objectAreas);
+
+  // Slightly increase the range and round to nearest whole number
+  minArea = Math.floor(minArea - (0.05 * minArea)); // Reduce min by 5%
+  maxArea = Math.ceil(maxArea + (0.05 * maxArea)); // Increase max by 5%
 
   return (
     <div
@@ -83,7 +95,11 @@ const AreaChart = ({ data }) => {
             return formattedDate;
           }}
         />
-        <YAxis domain={['auto', 'auto']} label={{ value: 'Area', angle: -90, position: 'insideLeft' }} />
+        <YAxis 
+          domain={[minArea, maxArea]} 
+          label={{ value: 'Area', angle: -90, position: 'insideLeft' }} 
+          tickFormatter={(value) => Math.round(value)} // Round the tick values
+        />
         <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
         <Tooltip content={<CustomTooltip />} />
         <Legend />

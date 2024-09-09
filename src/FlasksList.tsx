@@ -87,8 +87,8 @@ const FlasksList: React.FC<SnippetsListProps> = ({ snippets, flask, creation_dat
         <FlaskImageDisplay flask={flask} />
         <FlaskInfo flask={flask} creation_date={creation_date} />
         <FlaskGifDisplay flask={flask} />
-        <IntensityChart data={transformedData} />
         <AreaChart data={transformedData} />
+        <IntensityChart data={transformedData} />
 
       </div>
     </div>
