@@ -3,6 +3,7 @@ import FlaskImageDisplay from './FlaskImageDisplay';
 import FlaskInfo from './FlaskInfo';
 import FlaskGifDisplay from './FlaskGifDisplay';
 import IntensityChart from './FlaskChartComponent';
+import AreaChart from './AreaChartComponent';
 
 function formatISODate(isoDate: string): string {
   const date = new Date(isoDate);
@@ -26,6 +27,7 @@ interface Snippet {
   mean_green_intensity: number;
   mean_red_intensity: number;
   path: string;
+  object_area: string;
 }
 
 interface SnippetsListProps {
@@ -46,12 +48,13 @@ interface SnippetsListProps {
 }
 
 const FlasksList: React.FC<SnippetsListProps> = ({ snippets, flask, creation_date }) => {
-  const transformedData = snippets.map(({ creation_date, mean_blue_intensity, mean_green_intensity, mean_red_intensity }) => ({
+  const transformedData = snippets.map(({ creation_date, mean_blue_intensity, mean_green_intensity, mean_red_intensity, object_area }) => ({
     timestamp_str: creation_date,
     mean_blue_intensity,
     mean_green_intensity,
+    mean_red_intensity,
+    object_area
 
-    mean_red_intensity
   }));
 
   // Basic styling for flex display
@@ -85,6 +88,8 @@ const FlasksList: React.FC<SnippetsListProps> = ({ snippets, flask, creation_dat
         <FlaskInfo flask={flask} creation_date={creation_date} />
         <FlaskGifDisplay flask={flask} />
         <IntensityChart data={transformedData} />
+        <AreaChart data={transformedData} />
+
       </div>
     </div>
   );
