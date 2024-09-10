@@ -4,7 +4,8 @@ import React, { useState, useEffect } from 'react';
 const PerimeterPath = ({ data }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [paths, setPaths] = useState([]);
-  
+  const [canvasId] = useState(`canvas-${Math.random().toString(36).substr(2, 9)}`); // Generate a unique canvas ID
+
   // Sort data by timestamp
   const sortedData = [...data].sort((a, b) => new Date(a.timestamp_str) - new Date(b.timestamp_str));
 
@@ -68,7 +69,7 @@ const PerimeterPath = ({ data }) => {
   };
 
   useEffect(() => {
-    const canvas = document.getElementById('pathCanvas');
+    const canvas = document.getElementById(canvasId); // Use the dynamically generated canvasId
     const ctx = canvas.getContext('2d');
     
     // Set up a timeout-based animation loop (reduce to 10 FPS)
@@ -89,11 +90,11 @@ const PerimeterPath = ({ data }) => {
 
     // Cleanup interval on component unmount
     return () => clearTimeout(intervalId);
-  }, [paths, currentIndex, sortedData]);
+  }, [paths, currentIndex, sortedData, canvasId]);
 
   return (
     <div style={{ border: "1px solid #ccc", width: "150px", height: "200px", margin: "0 10px 0 0", borderRadius: "8px"}}>
-      <canvas id="pathCanvas" width={150} height={200}></canvas>
+      <canvas id={canvasId} width={150} height={200}></canvas> {/* Use the dynamically generated canvasId */}
     </div>
   );
 };
