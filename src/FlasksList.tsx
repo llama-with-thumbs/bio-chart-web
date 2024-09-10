@@ -4,6 +4,7 @@ import FlaskInfo from './FlaskInfo';
 import FlaskGifDisplay from './FlaskGifDisplay';
 import IntensityChart from './FlaskChartComponent';
 import AreaChart from './AreaChartComponent';
+import PerimeterPath from './PerimeterPathComponent'
 
 function formatISODate(isoDate: string): string {
   const date = new Date(isoDate);
@@ -28,6 +29,7 @@ interface Snippet {
   mean_red_intensity: number;
   path: string;
   object_area: string;
+  object_perimeter: string;
 }
 
 interface SnippetsListProps {
@@ -48,12 +50,13 @@ interface SnippetsListProps {
 }
 
 const FlasksList: React.FC<SnippetsListProps> = ({ snippets, flask, creation_date }) => {
-  const transformedData = snippets.map(({ creation_date, mean_blue_intensity, mean_green_intensity, mean_red_intensity, object_area }) => ({
+  const transformedData = snippets.map(({ creation_date, mean_blue_intensity, mean_green_intensity, mean_red_intensity, object_area, object_perimeter}) => ({
     timestamp_str: creation_date,
     mean_blue_intensity,
     mean_green_intensity,
     mean_red_intensity,
-    object_area
+    object_area,
+    object_perimeter
 
   }));
 
@@ -88,6 +91,7 @@ const FlasksList: React.FC<SnippetsListProps> = ({ snippets, flask, creation_dat
         <FlaskInfo flask={flask} creation_date={creation_date} />
         <FlaskGifDisplay flask={flask} />
         <AreaChart data={transformedData} />
+        <PerimeterPath data={transformedData} />
         <IntensityChart data={transformedData} />
 
       </div>
